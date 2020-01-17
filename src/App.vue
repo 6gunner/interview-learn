@@ -1,27 +1,55 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
-    <ul>
-      <input type="file" name="file" v-on:change="onupload"/>
-      <button v-on:click="upload"> 上传</button>
-    </ul>
+    <input type="file" name="file" v-on:change="onupload"/>
+    <button v-on:click="upload"> 上传</button>
+    <h3>总进度</h3>
+    <div class="progress_wrapper">
+      <div class="progress_inner" :style="{
+          width: progress,
+        }"></div>
+      <span>{{progress}}</span>
+    </div>
+    <h3>子进度</h3>
+    <div class="child_progress_wrapper" v-for="(item, index) in data"
+         :key="index">
+      <span>{{item.hash}}</span>
+      <div
+        class="child_progress_inner"
+        :style="{
+          width: item.progress + '%',
+        }">
+      </div>
+      <span>{{item.progress}}%</span>
+    </div>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
   import qs from 'qs';
+
   export default {
     name: 'app',
     data() {
       return {
         file: null,
+        data: [],
       }
     },
     mounted() {
 
+    },
+    computed: {
+      progress() {
+        if (!this.file || !this.data.length) return 0;
+
+        const uploadedSize = this.data.reduce((prev, curr) => {
+          return prev + curr.loaded;
+        }, 0);
+        console.log(uploadedSize);
+        return (uploadedSize / this.file.size * 100).toFixed(2) + '%';
+      }
     },
     methods: {
       onupload(event) {
@@ -37,6 +65,7 @@
         while (cur < file.size) {
           chunks.push({
             file: file.slice(cur, cur + chunkSize),
+            filename: file.name,
           });
           cur += chunkSize;
         }
@@ -44,20 +73,30 @@
       },
       async upload() {
         const chunks = this._createChunks();
-        const fileName = this.file.name;
-        const formDatas = chunks.map((item, key) => {
+        this.data = chunks.map(({file, filename}, index) => ({
+          chunk: file,
+          index,
+          hash: `${filename}-${index}`,
+          filename,
+          loaded: 0,
+          percentage: 0
+        }));
+        await this._uploadChunks();
+      },
+      async _uploadChunks() {
+        const promises = this.data.map((item, key) => {
           const formData = new FormData();
-          formData.append('chunk', item.file);
-          formData.append('hash', `${fileName}-${key}`);
-          formData.append("filename", this.file.name);
+          formData.append('chunk', item.chunk);
+          formData.append('hash', item.hash);
+          formData.append("filename", item.filename);
           return formData
-        });
-        const promises = formDatas.map((formData) => {
+        }).map((formData, index) => {
           return axios({
             url: 'file/v1/uploadChunks',
             method: 'post',
             baseURL: '/api',
-            data: formData
+            data: formData,
+            onUploadProgress: this.createUploadHandler(index)
           });
         });
         await Promise.all(promises);
@@ -72,6 +111,14 @@
             filename: this.file.name,
           }),
         })
+      },
+      createUploadHandler(index) {
+        return (e) => {
+          // 记录每一块的进度
+          const progress = Math.ceil(e.loaded / e.total) * 100;
+          this.data[index].progress = progress;
+          this.data[index].loaded = e.loaded;
+        }
       }
     }
   }
@@ -84,11 +131,13 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+    width: 80%;
+    margin: 60px auto 0;
   }
 
   h1, h2 {
     font-weight: normal;
+    text-align: center;
   }
 
   ul {
@@ -103,5 +152,57 @@
 
   a {
     color: #42b983;
+  }
+
+  h3 {
+    text-align: left;
+  }
+
+  .progress_wrapper {
+    width: 100%;
+    margin: 20px 0;
+    background: transparent;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+  }
+
+  .progress_inner {
+    border: 1px solid transparent;
+    background: #42b983;
+    height: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    align-self: center;
+  }
+
+  .progress_inner + span {
+    float: right;
+  }
+
+  .child_progress_wrapper {
+    width: 40%;
+    margin: 20px 0;
+    background: transparent;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+  }
+
+  .child_progress_inner {
+    border: 1px solid transparent;
+    background: #52f1f0;
+    height: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    align-self: center;
+  }
+
+  .child_progress_inner + span {
+    float: right;
   }
 </style>
