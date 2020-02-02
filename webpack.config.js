@@ -1,5 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
   entry: './src/main.js',
@@ -32,6 +34,10 @@ module.exports = {
 
       },
       {
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
@@ -55,7 +61,7 @@ module.exports = {
         target: 'http://localhost:8081/',
         pathRewrite: {'^/api' : ''}
       }
-    }
+    },
   },
   performance: {
     hints: false
@@ -80,6 +86,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
   ])
 }
