@@ -58,8 +58,15 @@ module.exports = {
     overlay: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8081/',
-        pathRewrite: {'^/api' : ''}
+        target: 'https://www.continue19.com',
+        secure: false,
+        changeOrigin: true,
+        headers: {
+          Referer: 'https://www.continue19.com'
+        },
+        cookieDomainRewrite: {
+          '*': 'localhost',
+        }
       }
     },
   },
