@@ -1,13 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
-const CopyPlugin = require('copy-webpack-plugin');
-
+var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
     filename: 'build.js'
   },
   module: {
@@ -73,6 +72,15 @@ module.exports = {
   performance: {
     hints: false
   },
+  plugins: [
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(__dirname, 'src/sw.js'),
+    }),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, 'static'),
+      to: 'static',
+    }])
+  ],
   devtool: '#cheap-eval-source-map'
 }
 
@@ -83,12 +91,6 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
       }
     }),
     new webpack.LoaderOptionsPlugin({

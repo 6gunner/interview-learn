@@ -34,6 +34,18 @@ const router = new VueRouter({
   }, {
     path: '/curry',
     component: () => import('./curry/index')
+  }, {
+    path: '/sw',
+    component: () => import('./serviceworker/index')
+  }, {
+    path: '/sticky',
+    component: () => import('./position/sticky')
+  }, {
+    path: '/verticalAlign',
+    component: () => import('./verticalAlign')
+  }, {
+    path: '/grid',
+    component: () => import('./grid')
   }]
 })
 import App from './App.vue'

@@ -47,7 +47,7 @@
 <script>
   import axios from 'axios';
   import qs from 'qs';
-  import Worker from './hash.worker';
+  import Worker from 'worker-loader!./hash.worker';
 
   export default {
     name: 'app',

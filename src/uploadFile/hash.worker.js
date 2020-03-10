@@ -1,6 +1,6 @@
 self.importScripts('/static/spark-md5.js');
 self.onmessage = function(e) {
-  const { fileChunkList } = e.data;
+  const fileChunkList = e.data.fileChunkList;
   const spark = new self.SparkMD5.ArrayBuffer();
   let count = 0;
   let percentage = 0;
