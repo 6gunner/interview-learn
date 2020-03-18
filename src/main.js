@@ -12,25 +12,25 @@ const router = new VueRouter({
     component: () => import('./webworker/index'),
   }, {
     path:'/event',
-    component: () => import('./event/index')
+    component: () => import('./base/event/index')
   }, {
     path:'/event2',
-    component: () => import('./event/index2')
+    component: () => import('./base/event/index2')
   }, {
     path: '/generator',
     component: () => import('./generator/index')
   }, {
     path: '/asyncawait',
-    component: () => import('./asyncawait/index')
+    component: () => import('./base/asyncawait/index')
   }, {
     path: '/closure',
-    component: () => import('./closure/index')
+    component: () => import('./base/closure/index')
   }, {
     path: '/c',
-    component: () => import('./constructor/index')
+    component: () => import('./base/constructor/index')
   }, {
     path: '/copy',
-    component: () => import('./copy/deepCopy')
+    component: () => import('./base/copy/deepCopy')
   }, {
     path: '/curry',
     component: () => import('./curry/index')
@@ -39,19 +39,25 @@ const router = new VueRouter({
     component: () => import('./serviceworker/index')
   }, {
     path: '/sticky',
-    component: () => import('./position/sticky')
+    component: () => import('./css/position/sticky')
   }, {
     path: '/verticalAlign',
-    component: () => import('./verticalAlign')
+    component: () => import('./css/verticalAlign')
   }, {
     path: '/grid',
-    component: () => import('./grid')
+    component: () => import('./css/grid')
+  }, {
+    path: '/defineProperty',
+    component: () => import('./vue/defineProperty')
+  }, {
+    path: '/vue/lifecycle',
+    component: () => import('./vue/liefcycle')
   }]
 })
 import App from './App.vue'
-
-new Vue({
+const vm = new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: h => h(App) // 这里因为指定了render函数，所以template不会有效
 })
+
