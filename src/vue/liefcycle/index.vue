@@ -1,26 +1,32 @@
 <template>
     <div id="lifecycle">
-        <Hello></Hello>
+        <Hello :msg="msg"></Hello>
+        <button @click="changeProps">
+            修改
+        </button>
     </div>
 </template>
 <script>
   import Hello from './hello';
   export default {
-    props: {
-      name: String,
-      age: Number,
-    },
+
     components: {
       Hello
     },
     data () {
       return {
         a: 1,
+        msg: 'Hello World'
       }
     },
     computed: {
       b () {
         return this.a + 2
+      }
+    },
+    methods: {
+      changeProps() {
+        this.msg = "ddsadass";
       }
     },
     beforeCreate () {
@@ -57,7 +63,6 @@
       console.log('%c%s', 'color:red', 'el     : ' + this.$el.innerHTML)
       console.log(this.$el) // 因为$el是一个对象，存储的是引用。所以用console.log打印时，显示的是变化后的$el
       console.log('%c%s', 'color:red', 'data   : ' + JSON.stringify(this.$data))
-      console.log('%c%s', 'color:red', 'message: ' + this.a)
       console.groupEnd()
     },
     updated: function () {
@@ -65,17 +70,15 @@
       console.log('%c%s', 'color:red', 'el     : ' + this.$el.innerHTML)
       console.log(this.$el)
       console.log('%c%s', 'color:red', 'data   : ' + JSON.stringify(this.$data))
-      console.log('%c%s', 'color:red', 'message: ' + this.a)
       console.groupEnd()
     },
     beforeDestroy () {
       console.log('beforeDestroy被调用')
-      console.log(this._isDestroyed) // false
+      // console.log(this._isDestroyed) // false
     },
     destroyed () {
       console.log('destroyed被调用')
-      console.log(this.$el);
-      console.log(this._isDestroyed) // true
+      // console.log(this._isDestroyed) // true
     }
   }
 </script>
