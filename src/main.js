@@ -61,6 +61,12 @@ const router = new VueRouter({
   }, {
     path: '/wsplugin',
     component: () => import('./wsplugin/test')
+  }, {
+    path: '/design/decorator',
+    component: () => import('./design-pattern/decorator')
+  }, {
+    path: '/http',
+    component: () => import('./http/Index')
   }]
 })
 import App from './App.vue'
