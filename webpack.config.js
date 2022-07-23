@@ -51,7 +51,7 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     overlay: true,
-    host: "0.0.0.0",
+    host: "127.0.0.1",
     proxy: {
       "/api": {
         target: "https://www.continue19.com",

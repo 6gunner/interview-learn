@@ -1,7 +1,7 @@
 import VueRouter from "vue-router";
 
 const router = new VueRouter({
-  mode: "hash", // history或hash模式
+  mode: "history", // history或hash模式
   routes: [
     {
       path: "/upload",
@@ -48,11 +48,15 @@ const router = new VueRouter({
       component: () => import("./serviceworker/index")
     },
     {
-      path: "/sticky",
+      path: "/css",
+      component: () => import("./css/index")
+    },
+    {
+      path: "/css/sticky",
       component: () => import("./css/position/sticky")
     },
     {
-      path: "/verticalAlign",
+      path: "/css/verticalAlign",
       component: () => import("./css/verticalAlign")
     },
     {
@@ -60,9 +64,14 @@ const router = new VueRouter({
       component: () => import("./css/grid")
     },
     {
+      path: "/css/textShadow",
+      component: () => import("./css/textShadow")
+    },
+    {
       path: "/defineProperty",
       component: () => import("./vue/defineProperty")
     },
+
     {
       path: "/vue/lifecycle",
       component: () => import("./vue/liefcycle")
@@ -89,9 +98,14 @@ const router = new VueRouter({
         }
       ]
     },
+
     {
       path: "/blob",
       component: () => import("./blob/index")
+    },
+    {
+      path: "/virtual_dom",
+      component: () => import("./virtualDom/index")
     }
   ]
 });
