@@ -55,10 +55,10 @@ const oldElements = {
         { tagName: "li", children: ["li1"], key: 1 },
         { tagName: "li", children: ["li2"], key: 2 },
         { tagName: "li", children: ["li3"], key: 3 },
-        { tagName: "li", children: ["li4"], key: 4 },
-        { tagName: "li", children: ["li5"], key: 5 },
-        { tagName: "li", children: ["li6"], key: 6 },
-        { tagName: "li", children: ["li7"], key: 7 }
+        { tagName: "li", children: ["li4"], key: 4 }
+        // { tagName: "li", children: ["li5"], key: 5 },
+        // { tagName: "li", children: ["li6"], key: 6 },
+        // { tagName: "li", children: ["li7"], key: 7 }
       ]
     }
   ]
@@ -83,10 +83,10 @@ const newElements = {
       tagName: "ul",
       children: [
         { tagName: "li", children: ["li2"], key: 2 },
-        { tagName: "li", children: ["li5"], key: 5 },
+        { tagName: "li", children: ["li1"], key: 1 },
         { tagName: "li", children: ["li3"], key: 3 },
-        { tagName: "li", children: ["li4"], key: 4 },
-        { tagName: "li", children: ["li7"], key: 7 }
+        { tagName: "li", children: ["li4"], key: 4 }
+        // { tagName: "li", children: ["li7"], key: 7 }
       ]
     }
   ]
