@@ -30,7 +30,7 @@ export default function listDiff(oldList, newList, key) {
   const oldListKeyMap = getListKeyMap(oldList, key);
   const newListKeyMap = getListKeyMap(newList, key);
 
-  const noKeyItems = oldListKeyMap.noKeyItems;
+  const noKeyItems = newListKeyMap.noKeyItems;
   let noKeyItemsIndex = 0;
 
   const oldIndexMap = oldListKeyMap.keyIndexMap;
@@ -126,13 +126,11 @@ export default function listDiff(oldList, newList, key) {
   }
 
   function insert(index, item) {
-    debugger;
     const move = { index: index, item: item, type: 1 };
     moves.push(move);
     console.log(`${index}插入${item.key}`);
   }
 
-  // debugger;
   return {
     moves,
     keeps

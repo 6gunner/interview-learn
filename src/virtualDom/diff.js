@@ -28,11 +28,14 @@ function dfsWalk(oldNode, newNode, index, patches) {
     // });
   } else if (_.isString(oldNode) && _.isString(newNode)) {
     // 如果是一个字符串，那么代表是text
-    patches[index].push({
-      type: PATCH_TYPES.TEXT,
-      obj: newNode
-    });
+    if (oldNode !== newNode) {
+      patches[index].push({
+        type: PATCH_TYPES.TEXT,
+        obj: newNode
+      });
+    }
   } else if (
+    // 节点相同
     oldNode.tagName === newNode.tagName &&
     oldNode.key === newNode.key
   ) {
@@ -54,7 +57,6 @@ function dfsWalk(oldNode, newNode, index, patches) {
   function diffChildren(oldNodeChildren, newNodeChildren, index, patches) {
     // 列表diff算法
     const diffs = listDiff(oldNodeChildren, newNodeChildren, "key");
-    debugger;
     newNodeChildren = diffs.keeps;
     if (diffs.moves.length) {
       const reorderPatch = { type: PATCH_TYPES.REORDER, obj: diffs.moves };
