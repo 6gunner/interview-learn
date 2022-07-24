@@ -98,7 +98,6 @@ const router = new VueRouter({
         }
       ]
     },
-
     {
       path: "/blob",
       component: () => import("./blob/index")

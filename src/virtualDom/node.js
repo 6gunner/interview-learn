@@ -1,7 +1,8 @@
-function Node({ tagName, props, children }) {
+function Node({ tagName, props, key, children }) {
   this.tagName = tagName;
   this.props = props;
   this.children = children || [];
+  this.key = key || null;
   if (children && children.length) {
     for (let i = 0; i < children.length; i++) {
       let child = children[i];

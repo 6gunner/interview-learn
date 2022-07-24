@@ -1,18 +1,14 @@
-# gs-comps
+# 面试学习
 
-> A Vue.js project
+vue 项目，做了很多 demo，每一个 router 代表一个知识体点；
 
-## Build Setup
+## 怎么用？
 
-``` bash
+```bash
 # install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
 ```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).

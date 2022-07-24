@@ -21,10 +21,11 @@ function dfsWalk(oldNode, newNode, index, patches) {
     });
   } else if (!newNode) {
     // 如果newNode是空的，也是删除
-    patches[index].push({
-      type: PATCH_TYPES.REPLACE,
-      obj: null
-    });
+    // 不需要做什么
+    // patches[index].push({
+    //   type: PATCH_TYPES.REPLACE,
+    //   obj: null
+    // });
   } else if (_.isString(oldNode) && _.isString(newNode)) {
     // 如果是一个字符串，那么代表是text
     patches[index].push({
@@ -51,8 +52,10 @@ function dfsWalk(oldNode, newNode, index, patches) {
 
   // 对children进行diff比较
   function diffChildren(oldNodeChildren, newNodeChildren, index, patches) {
+    // 列表diff算法
     const diffs = listDiff(oldNodeChildren, newNodeChildren, "key");
-    newNodeChildren = diffs.children;
+    debugger;
+    newNodeChildren = diffs.keeps;
     if (diffs.moves.length) {
       const reorderPatch = { type: PATCH_TYPES.REORDER, obj: diffs.moves };
       patches[index].push(reorderPatch);

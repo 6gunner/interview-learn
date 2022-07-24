@@ -12,10 +12,11 @@ function patch(el, patches) {
 
 // 深度遍历node，然后去更新；
 function dfsWalk(el, walker, patches) {
+  if (!el) {
+    return;
+  }
   const currentPatches = patches[walker.index]; //从patches拿到当前节点的差异
-
   const len = el.children ? el.children.length : 0;
-
   // 递归：深度遍历子节点
   for (let i = 0; i < len; i++) {
     const child = el.children[i];
@@ -71,7 +72,6 @@ function updateProps(el, propsPatches) {
 }
 
 function updateText(el, newText) {
-  debugger;
   el.innerHTML = newText;
 }
 
@@ -89,9 +89,10 @@ function reorderChildren(el, moves) {
   });
   moves.forEach(({ index, item, type }) => {
     if (type == MOVE_TYPES.REMOVE) {
-      // if (el.childNodes[index] === nodes[index]) {
-      el.removeChild(item);
-      // }
+      if (el.childNodes[index] && el.childNodes[index] === nodes[index]) {
+        el.removeChild(el.childNodes[index]);
+      }
+      nodes.splice(index, 1);
     } else if (type === MOVE_TYPES.INSERT) {
       const insertedNode = map[item.key]
         ? map[item.key].cloneNode(true)
@@ -100,7 +101,6 @@ function reorderChildren(el, moves) {
         : document.createTextNode(item);
       nodes.splice(index, 0, insertedNode);
       const slbNode = el.childNodes[index] || null;
-      debugger;
       el.insertBefore(insertedNode, slbNode);
     }
   });
