@@ -53,17 +53,17 @@ module.exports = {
     overlay: true,
     host: "127.0.0.1",
     proxy: {
-      "/api": {
-        target: "https://www.continue19.com",
-        secure: false,
-        changeOrigin: true,
-        headers: {
-          Referer: "https://www.continue19.com"
-        },
-        cookieDomainRewrite: {
-          "*": "localhost"
-        }
-      }
+      // "/api": {
+      //   target: "https://www.continue19.com",
+      //   secure: false,
+      //   changeOrigin: true,
+      //   headers: {
+      //     Referer: "https://www.continue19.com"
+      //   },
+      //   cookieDomainRewrite: {
+      //     "*": "localhost"
+      //   }
+      // }
     }
   },
   performance: {

@@ -12,33 +12,45 @@ const router = new VueRouter({
       component: () => import("./webworker/index")
     },
     {
-      path: "/event",
-      component: () => import("./base/event/index")
+      path: "/base",
+      component: () => import("./base/index"),
+      children: [
+        {
+          path: "/event",
+          component: () => import("./base/event/index")
+        },
+        {
+          path: "/event2",
+          component: () => import("./base/event/index2")
+        },
+        {
+          path: "/asyncawait",
+          component: () => import("./base/asyncawait/index")
+        },
+        {
+          path: "/closure",
+          component: () => import("./base/closure/index")
+        },
+        {
+          path: "/c",
+          component: () => import("./base/constructor/index")
+        },
+        {
+          path: "/copy",
+          component: () => import("./base/copy/deepCopy")
+        },
+        {
+          path: "this",
+          component: () => import("./base/this/index")
+        }
+      ]
     },
-    {
-      path: "/event2",
-      component: () => import("./base/event/index2")
-    },
+
     {
       path: "/generator",
       component: () => import("./generator/index")
     },
-    {
-      path: "/asyncawait",
-      component: () => import("./base/asyncawait/index")
-    },
-    {
-      path: "/closure",
-      component: () => import("./base/closure/index")
-    },
-    {
-      path: "/c",
-      component: () => import("./base/constructor/index")
-    },
-    {
-      path: "/copy",
-      component: () => import("./base/copy/deepCopy")
-    },
+
     {
       path: "/curry",
       component: () => import("./curry/index")

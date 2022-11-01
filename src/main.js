@@ -8,9 +8,9 @@ import router from "./router";
 import store from "./store";
 
 Vue.use(VueRouter);
-Vue.use(WsPlugin, "wss://ws.quote.gsoms.top/ws", {
-  store
-});
+// Vue.use(WsPlugin, "wss://ws.quote.gsoms.top/ws", {
+//   store
+// });
 
 import App from "./App.vue";
 const vm = new Vue({
