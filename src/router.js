@@ -1,4 +1,5 @@
 import VueRouter from "vue-router";
+import CSSLayout from "./css/layout";
 
 const router = new VueRouter({
   mode: "history", // history或hash模式
@@ -50,35 +51,49 @@ const router = new VueRouter({
       path: "/generator",
       component: () => import("./generator/index")
     },
-
-    {
-      path: "/curry",
-      component: () => import("./curry/index")
-    },
+    // {
+    //   path: "/curry",
+    //   component: () => import("./curry/index")
+    // },
     {
       path: "/sw",
       component: () => import("./serviceworker/index")
     },
     {
-      path: "/css",
-      component: () => import("./css/index")
+      path: "/css-learn",
+      component: CSSLayout,
+      beforeEnter: (to, form, next) => {
+        console.log("pcss-learn router beforeEnter");
+        next();
+      },
+      children: [
+        {
+          path: "index",
+          component: () => import("@/css/index")
+        },
+        {
+          path: "sticky",
+          component: () => import("./css/position/sticky")
+        },
+        {
+          path: "verticalAlign",
+          component: () => import("./css/verticalAlign")
+        },
+        {
+          path: "grid",
+          component: () => import("./css/grid")
+        },
+        {
+          path: "textShadow",
+          component: () => import("./css/textShadow")
+        },
+        {
+          path: "bfc",
+          component: () => import("./css/bfc/index")
+        }
+      ]
     },
-    {
-      path: "/css/sticky",
-      component: () => import("./css/position/sticky")
-    },
-    {
-      path: "/css/verticalAlign",
-      component: () => import("./css/verticalAlign")
-    },
-    {
-      path: "/grid",
-      component: () => import("./css/grid")
-    },
-    {
-      path: "/css/textShadow",
-      component: () => import("./css/textShadow")
-    },
+
     {
       path: "/defineProperty",
       component: () => import("./vue/defineProperty")

@@ -3,9 +3,12 @@ var webpack = require("webpack");
 var ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 
+const ASSET_PATH = process.env.ASSET_PATH || "/";
+
 module.exports = {
   entry: "./src/main.js",
   output: {
+    publicPath: ASSET_PATH,
     path: path.resolve(__dirname, "./dist"),
     filename: "build.js"
   },
@@ -43,6 +46,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "@": path.resolve(__dirname, "src"),
       vue$: "vue/dist/vue.esm.js"
     },
     extensions: ["*", ".js", ".vue", ".json"]
@@ -52,19 +56,7 @@ module.exports = {
     noInfo: true,
     overlay: true,
     host: "127.0.0.1",
-    proxy: {
-      // "/api": {
-      //   target: "https://www.continue19.com",
-      //   secure: false,
-      //   changeOrigin: true,
-      //   headers: {
-      //     Referer: "https://www.continue19.com"
-      //   },
-      //   cookieDomainRewrite: {
-      //     "*": "localhost"
-      //   }
-      // }
-    }
+    proxy: {}
   },
   performance: {
     hints: false
