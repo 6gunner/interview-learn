@@ -68,8 +68,12 @@ const router = new VueRouter({
       },
       children: [
         {
-          path: "index",
-          component: () => import("@/css/index")
+          path: "aligncenter",
+          component: () => import("@/css/aligncenter")
+        },
+        {
+          path: "lineheight",
+          component: () => import("@/css/lineheight")
         },
         {
           path: "sticky",
