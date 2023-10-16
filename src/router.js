@@ -51,6 +51,7 @@ const router = new VueRouter({
       path: "/generator",
       component: () => import("./generator/index")
     },
+
     // {
     //   path: "/curry",
     //   component: () => import("./curry/index")
@@ -58,6 +59,10 @@ const router = new VueRouter({
     {
       path: "/sw",
       component: () => import("./serviceworker/index")
+    },
+    {
+      path: "/css",
+      component: () => import("./css/index")
     },
     {
       path: "/css-learn",
