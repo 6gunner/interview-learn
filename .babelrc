@@ -18,11 +18,7 @@
         "moduleName": "babel-runtime"
       }
     ],
-    [
-      "syntax-dynamic-import"
-    ],
-    [
-      "transform-decorators-legacy"
-    ]
+    ["syntax-dynamic-import"],
+    ["transform-decorators-legacy"]
   ]
 }

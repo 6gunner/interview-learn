@@ -18,11 +18,11 @@ const router = new VueRouter({
       children: [
         {
           path: "/event",
-          component: () => import("./base/event/index")
+          component: () => import("./base/eventloop/index")
         },
         {
           path: "/event2",
-          component: () => import("./base/event/index2")
+          component: () => import("./base/eventloop/index2")
         },
         {
           path: "/asyncawait",
@@ -41,21 +41,19 @@ const router = new VueRouter({
           component: () => import("./base/copy/deepCopy")
         },
         {
-          path: "this",
+          path: "/this",
           component: () => import("./base/this/index")
         }
       ]
     },
-
     {
       path: "/generator",
       component: () => import("./generator/index")
     },
-
-    // {
-    //   path: "/curry",
-    //   component: () => import("./curry/index")
-    // },
+    {
+      path: "/curry",
+      component: () => import("./base/curry/index")
+    },
     {
       path: "/sw",
       component: () => import("./serviceworker/index")
@@ -63,6 +61,7 @@ const router = new VueRouter({
     {
       path: "/css",
       component: () => import("./css/index")
+      path: "/css/sticky",
     },
     {
       path: "/css-learn",

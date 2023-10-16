@@ -1,14 +1,12 @@
 <template>
   <div>
-    Base
+    Base Test
     <router-view></router-view>
   </div>
 </template>
 <script>
-import './this/index3';
 export default {
-  name: 'Base',
-}
+  name: "Base"
+};
 </script>
-<style>
-</style>
+<style></style>
