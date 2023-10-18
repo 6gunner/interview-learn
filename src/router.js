@@ -17,12 +17,8 @@ const router = new VueRouter({
       component: () => import("./base/index"),
       children: [
         {
-          path: "/event",
-          component: () => import("./base/eventloop/index")
-        },
-        {
-          path: "/event2",
-          component: () => import("./base/eventloop/index2")
+          path: "event",
+          component: () => import("./base/eventloop/index.vue")
         },
         {
           path: "/asyncawait",
@@ -43,6 +39,14 @@ const router = new VueRouter({
         {
           path: "/this",
           component: () => import("./base/this/index")
+        },
+        {
+          path: "parseInt",
+          component: () => import("./base/parseInt")
+        },
+        {
+          path: "typeof",
+          component: () => import("./base/typeof")
         }
       ]
     },
@@ -60,11 +64,6 @@ const router = new VueRouter({
     },
     {
       path: "/css",
-      component: () => import("./css/index")
-      path: "/css/sticky",
-    },
-    {
-      path: "/css-learn",
       component: CSSLayout,
       beforeEnter: (to, form, next) => {
         console.log("pcss-learn router beforeEnter");
@@ -103,13 +102,25 @@ const router = new VueRouter({
     },
 
     {
-      path: "/defineProperty",
-      component: () => import("./vue/defineProperty")
+      path: "/esnext",
+      component: () => import("./esnext"),
+      children: [
+        {
+          path: "dp",
+          component: () => import("./esnext/defineProperty/index.vue")
+        }
+      ]
     },
 
     {
-      path: "/vue/lifecycle",
-      component: () => import("./vue/liefcycle")
+      path: "/vue",
+      component: () => import("./vue"),
+      children: [
+        {
+          path: "cm",
+          component: () => import("./vue/comp-communication/parent")
+        }
+      ]
     },
     {
       path: "/wsplugin",
