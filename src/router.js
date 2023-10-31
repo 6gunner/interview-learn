@@ -21,8 +21,8 @@ const router = new VueRouter({
           component: () => import("./base/eventloop/index.vue")
         },
         {
-          path: "/asyncawait",
-          component: () => import("./base/asyncawait/index")
+          path: "async-await",
+          component: () => import("./base/asyncawait/index.vue")
         },
         {
           path: "/closure",
@@ -66,7 +66,7 @@ const router = new VueRouter({
       path: "/css",
       component: CSSLayout,
       beforeEnter: (to, form, next) => {
-        console.log("pcss-learn router beforeEnter");
+        console.log("css-learn router beforeEnter");
         next();
       },
       children: [
@@ -97,6 +97,14 @@ const router = new VueRouter({
         {
           path: "bfc",
           component: () => import("./css/bfc/index")
+        },
+        {
+          path: "question",
+          component: () => import("./css/question")
+        },
+        {
+          path: "padding",
+          component: () => import("./css/padding")
         }
       ]
     },
@@ -151,6 +159,10 @@ const router = new VueRouter({
     {
       path: "/virtual_dom",
       component: () => import("./virtualDom/index")
+    },
+    {
+      path: "/module",
+      component: () => import("./components/index.vue")
     }
   ]
 });

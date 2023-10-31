@@ -2,11 +2,22 @@
   <div>
     <fieldset>
       <legend>
-        margin折叠
+        margin上下折叠
       </legend>
-      <div class="content bfcDivBox">
-        <div class="boxA"></div>
-        <div class="boxB"></div>
+      <div class="content">
+        <div class="boxA">divA</div>
+        <div class="boxBWrapper">
+          <div class="boxB">divB</div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>
+        margin左右折叠
+      </legend>
+      <div class="content bfcDivBox flexBox">
+        <div class="boxA">divA</div>
+        <div class="boxB">divB</div>
       </div>
     </fieldset>
     <fieldset>
@@ -57,16 +68,16 @@ export default {};
 }
 
 .boxA {
-  margin: 40px 0;
+  margin: 40px;
   width: 80px;
   height: 120px;
   background: blue;
 }
 .boxB {
-  margin: 40px 0;
+  margin: 40px;
   width: 80px;
   height: 40px;
-  background: blue;
+  background: green;
 }
 .boxBWrapper {
   overflow: hidden;
@@ -105,5 +116,9 @@ export default {};
 .float-left {
   float: left;
   /* margin-right: 20px; */
+}
+.flexBox {
+  display: flex;
+  justify-content: flex-start;
 }
 </style>

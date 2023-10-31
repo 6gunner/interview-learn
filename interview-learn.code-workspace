@@ -1,11 +1,23 @@
 {
   "folders": [
     {
-      "path": "../react-learn"
+      "path": "."
     },
     {
-      "path": "."
+      "path": "../react-interview-learn"
+    },
+    {
+      "path": "../source-code-react/react-source-code-debug"
     }
   ],
-  "settings": {}
+  "settings": {
+    "javascript.validate.enable": false,
+    "editor.codeActionsOnSave": {
+
+    },
+    "workbench.colorCustomizations": {
+
+    },
+    "editor.formatOnSaveMode": "modificationsIfAvailable"
+  }
 }
